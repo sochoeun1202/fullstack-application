@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: microservice
+logging:
+  pattern:
+    console: "%clr(%d{yyyy-MM-dd}){faint} %clr(%-5level) %clr([%thread]){faint} %clr(%logger{36}){cyan} %clr([${spring.application.name},%X{traceId:-},%X{spanId:-}]){faint} - %msg%n"

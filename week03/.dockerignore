@@ -1,0 +1,83 @@
+# =========================
+# Build
+# =========================
+build/
+target/
+out/
+
+# =========================
+# Gradle
+# =========================
+.gradle/
+!gradle/wrapper/gradle-wrapper.jar
+
+# =========================
+# Maven
+# =========================
+.mvn/
+mvnw.cmd
+
+# =========================
+# IDE
+# =========================
+.idea/
+*.iml
+.vscode/
+.project
+.classpath
+.settings/
+
+# =========================
+# Logs
+# =========================
+logs/
+*.log
+
+# =========================
+# OS files
+# =========================
+.DS_Store
+Thumbs.db
+
+# =========================
+# Git
+# =========================
+.git/
+.gitignore
+
+# =========================
+# Docker
+# =========================
+Dockerfile*
+docker-compose*
+compose.yml
+
+# =========================
+# Environment / Secrets
+# =========================
+.env
+.env.*
+*.pem
+*.key
+*.crt
+
+# =========================
+# Test / Coverage
+# =========================
+coverage/
+jacoco/
+*.exec
+
+# =========================
+# Temporary files
+# =========================
+tmp/
+temp/
+*.swp
+
+# =========================
+# Spring Boot
+# =========================
+application-local.yml
+application-dev.yml
+application-test.yml
