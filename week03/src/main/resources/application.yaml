@@ -2,7 +2,7 @@ spring:
   application:
     name: microservice
   profiles:
-    active: dev
+    active: local
 
 logging:
   pattern:

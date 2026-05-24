@@ -5,34 +5,32 @@ FROM gradle:8.10-jdk21 AS build
 
 WORKDIR /app
 
-# Copy gradle files first for better layer caching
-COPY build.gradle settings.gradle gradlew ./
+COPY gradlew *.gradle ./
 COPY gradle gradle
 
-# Download dependencies
-RUN ./gradlew dependencies --no-daemon || true
+RUN --mount=type=cache,target=/home/gradle/.gradle \
+    ./gradlew buildEnvironment --no-daemon
 
-# Copy source code
 COPY src src
 
-# Build application
-RUN ./gradlew clean bootJar --no-daemon -x test
+RUN --mount=type=cache,target=/home/gradle/.gradle \
+    ./gradlew clean bootJar --no-daemon -x test
 
 # =========================
 # Stage 2: Runtime
 # =========================
 FROM eclipse-temurin:21-jre-jammy
 
-# Create non-root user
+# Create a system user for security
 RUN useradd -r -u 1001 spring
 
 WORKDIR /app
 
-# Copy jar
 COPY --from=build /app/build/libs/*.jar app.jar
 
-# Use non-root user
-USER spring:spring
+RUN chown spring:spring /app
+
+USER 1001
 
 # JVM optimization for containers
 ENV JAVA_OPTS="-XX:+UseContainerSupport \
