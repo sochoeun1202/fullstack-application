@@ -17,5 +17,5 @@ public class ProductResponse {
     private String description;
     private Double price;
     private Double discount;
-    private String createdDate;// 12/02/2026
+    private String createdDate;
 }
